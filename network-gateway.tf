@@ -4,7 +4,10 @@
 
 # Read Certificate
 data "azurerm_key_vault_secret" "vpn-root-certificate" {
-  depends_on=[azurerm_key_vault.kopi-keyvault]
+  depends_on=[
+    azurerm_key_vault.kopi-keyvault,
+    azurerm_key_vault_secret.vpn-root-certificate
+  ]
   
   name         = "vpn-root-certificate"
   key_vault_id = azurerm_key_vault.kopi-keyvault.id
